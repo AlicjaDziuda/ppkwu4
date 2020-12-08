@@ -33,9 +33,9 @@ public class Service {
         for (Element res : results) {
             Result result = new Result();
             result.setName(res.select("h2").text());
-            result.setName(res.select("h2").text());
-            result.setName(res.select("h2").text());
-            result.setName(res.select("h2").text());
+            result.setAddress(res.select("div.address").text());
+            result.setPhone(res.select("a.icon-telephone").attr("title"));
+            result.setEmail(res.select("a.ajax-modal-link").attr("data-company-email"));
             allResults.add(result);
         }
         model.addAttribute("results", allResults);

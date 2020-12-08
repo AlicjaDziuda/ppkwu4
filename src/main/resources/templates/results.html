@@ -8,9 +8,12 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row justify-content-center" th:each="result : ${results}">
+    <div class="row justify-content-center mb-3 border text-center" th:each="result : ${results}">
         <div>
             <h5><div  th:text="${result.getName()} "></div></h5>
+            <h6><div  th:text="${result.getAddress()} "></div></h6>
+            <h6><div  th:text="${result.getEmail()} "></div></h6>
+            <h6><div  th:text="${result.getPhone()} "></div></h6>
         </div>
     </div>
 </div>
