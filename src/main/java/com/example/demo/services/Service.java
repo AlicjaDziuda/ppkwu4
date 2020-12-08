@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @org.springframework.stereotype.Service
 public class Service {
@@ -23,17 +25,18 @@ public class Service {
     }
 
     //strona z wyszukanymi pozycjami
-    public String search(@ModelAttribute Phrase phrase) throws IOException {
+    public String search(@ModelAttribute Phrase phrase, Model model) throws IOException {
         String url ="https://panoramafirm.pl/szukaj?k="+phrase.getPhrase();
-
+        List<Result> allResults = new ArrayList<>();
         Document document = Jsoup.connect(url).get();
         Elements results = document.select("li.card.company-item");
         for (Element res : results) {
             Result result = new Result();
             result.setName(res.select("h2").text());
             System.out.println(result.getName());
+            allResults.add(result);
         }
-
+        model.addAttribute("results", allResults);
         return "results";
     }
 }

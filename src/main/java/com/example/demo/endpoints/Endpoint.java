@@ -29,8 +29,8 @@ public class Endpoint {
 
     //endpoint dla strony z wyszukanymi pozycjami
     @RequestMapping(value = "/cards", method = RequestMethod.GET)
-    public String search(@ModelAttribute Phrase phrase) throws IOException {
-        return service.search(phrase);
+    public String search(@ModelAttribute Phrase phrase, Model model) throws IOException {
+        return service.search(phrase, model);
     }
 
 }
