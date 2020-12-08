@@ -22,4 +22,4 @@ http://localhost:8080/cards?phrase=hydraulik
 ### Odpowiedź:
 
 ##### Strona, która wyświetla wszystkie pozycje pasujące do frazy podanej we wcześniej wymienionym endpoincie. 
-##### Dla frazy hydraulik wyświetlone zostaną : nazwa firmy, adres, telefon, email, link do mapy google z lokalizacja oraz adres strony www dla wszystkich pozycji, które zostały wyszukane.
+##### Dla frazy hydraulik wyświetlone zostaną : nazwa firmy, adres, telefon, email, link do mapy google z lokalizacją oraz adres strony www dla wszystkich pozycji, które zostały wyszukane.
