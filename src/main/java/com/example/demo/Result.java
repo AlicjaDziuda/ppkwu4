@@ -5,6 +5,7 @@ public class Result {
     private String address;
     private String email;
     private String phone;
+    private String website;
 
     public Result () {}
 
@@ -36,5 +37,13 @@ public class Result {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 }

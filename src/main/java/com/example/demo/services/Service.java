@@ -36,6 +36,7 @@ public class Service {
             result.setAddress(res.select("div.address").text());
             result.setPhone(res.select("a.icon-telephone").attr("title"));
             result.setEmail(res.select("a.ajax-modal-link").attr("data-company-email"));
+            result.setWebsite(res.select("a.icon-website").attr("href"));
             allResults.add(result);
         }
         model.addAttribute("results", allResults);
