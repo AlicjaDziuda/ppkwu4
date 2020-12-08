@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.Phrase;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @org.springframework.stereotype.Service
 public class Service {
@@ -15,7 +16,9 @@ public class Service {
     }
 
     //strona z wyszukanymi pozycjami
-    public String search(){
+    public String search(@ModelAttribute Phrase phrase){
+        String url ="https://panoramafirm.pl/szukaj?k="+phrase.getPhrase(); 
+        System.out.println(url);
         return "results";
     }
 }
