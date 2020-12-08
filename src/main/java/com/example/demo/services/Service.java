@@ -33,7 +33,9 @@ public class Service {
         for (Element res : results) {
             Result result = new Result();
             result.setName(res.select("h2").text());
-            System.out.println(result.getName());
+            result.setName(res.select("h2").text());
+            result.setName(res.select("h2").text());
+            result.setName(res.select("h2").text());
             allResults.add(result);
         }
         model.addAttribute("results", allResults);
