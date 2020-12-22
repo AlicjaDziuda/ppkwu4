@@ -6,6 +6,8 @@ public class Result {
     private String email;
     private String phone;
     private String website;
+    private String lat;
+    private String lon;
 
     public Result () {}
 
@@ -45,5 +47,21 @@ public class Result {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 }

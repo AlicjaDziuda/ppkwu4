@@ -37,6 +37,8 @@ public class Service {
             result.setPhone(res.select("a.icon-telephone").attr("title"));
             result.setEmail(res.select("a.ajax-modal-link").attr("data-company-email"));
             result.setWebsite(res.select("a.icon-website").attr("href"));
+            result.setLat(res.select("a.icon-check-point").attr("data-lat"));
+            result.setLon(res.select("a.icon-check-point").attr("data-lon"));
             allResults.add(result);
         }
         model.addAttribute("results", allResults);

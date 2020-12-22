@@ -15,6 +15,7 @@
             <h6><div  th:text="'email: '+ ${result.getEmail()} "></div></h6>
             <h6><div  th:text="'telefon: '+ ${result.getPhone()} "></div></h6>
             <h6><div  th:text="'strona internetowa: '+ ${result.getWebsite()} "></div></h6>
+            <a class="btn btn-secondary" th:href="@{'https://www.google.com/maps/search/?api=1&query='+ ${result.getLat()} +','+${result.getLon()}}">Link do mapy</a>
             <a class="btn btn-secondary">Wygeneruj vCard</a>
         </div>
     </div>
