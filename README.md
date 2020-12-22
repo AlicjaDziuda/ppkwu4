@@ -64,3 +64,7 @@ http://localhost:8080/vcard/1
 ### Odpowiedź:
 
 ##### Plik w formacie vCard, dla określonego za pomocą id wyniku wyszukanego w poprzednich zapytaniach.
+
+### Przykładowy plik:
+
+[przykładowy plik](https://github.com/AlicjaDziuda/ppkwu4/blob/master/vcard3.vcf)
