@@ -45,6 +45,7 @@ public class Service {
         int counter = 0;
         for (Element res : results) {
             Result result = new Result();
+            result.setId(String.valueOf(counter));
             result.setName(res.select("h2").text());
             result.setAddress(res.select("div.address").text());
             result.setPhone(res.select("a.icon-telephone").attr("title"));
@@ -61,8 +62,26 @@ public class Service {
 
     //generator vCarda
     @ResponseBody
-    public String generateFile(@PathVariable String result, Model model) throws IOException {
+    public ResponseEntity<Resource> generateFile(@PathVariable String result, Model model) throws IOException {
+        VCard vcard = new VCard();
 
-        return "xxx";
+        Result result1 = allResults.get(Integer.parseInt(result));
+
+        vcard.setFormattedName(result1.getName());
+        vcard.addEmail(result1.getEmail());
+        vcard.addTelephoneNumber(result1.getPhone());
+
+       
+        vcard.setRevision(Revision.now());
+
+        File vcardFile = new File("vcard.vcf");
+        Ezvcard.write(vcard).version(VCardVersion.V4_0).go(vcardFile);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=vcard.vcf");
+        Resource fileSystemResource = new FileSystemResource("vcard.vcf");
+        return ResponseEntity.ok()
+                             .headers(headers)
+                             .body(fileSystemResource);
     }
 }
