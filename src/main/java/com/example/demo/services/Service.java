@@ -71,15 +71,31 @@ public class Service {
         vcard.addEmail(result1.getEmail());
         vcard.addTelephoneNumber(result1.getPhone());
 
-       
+        Address adr = new Address();
+        String[] address = result1.getAddress().split(",");
+        if(address.length>1){
+            adr.setStreetAddress(address[0]);
+            adr.setPostalCode(address[1].substring(0,7));
+            adr.setLocality(address[1].substring(7));
+        }
+        else{
+            adr.setLocality(address[0].substring(7));
+            adr.setPostalCode(address[0].substring(0,7));
+        }
+        adr.setCountry("Polska");
+        vcard.addAddress(adr);
+
+        Url url = new Url(result1.getWebsite());
+        vcard.addUrl(url);
+
         vcard.setRevision(Revision.now());
 
-        File vcardFile = new File("vcard.vcf");
+        File vcardFile = new File("vcard"+result+".vcf");
         Ezvcard.write(vcard).version(VCardVersion.V4_0).go(vcardFile);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=vcard.vcf");
-        Resource fileSystemResource = new FileSystemResource("vcard.vcf");
+        Resource fileSystemResource = new FileSystemResource("vcard"+result+".vcf");
         return ResponseEntity.ok()
                              .headers(headers)
                              .body(fileSystemResource);
