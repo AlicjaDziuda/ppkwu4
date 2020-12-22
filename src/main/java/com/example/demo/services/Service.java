@@ -29,6 +29,7 @@ import java.util.List;
 @org.springframework.stereotype.Service
 public class Service {
     List<Result> allResults = new ArrayList<>();
+    Phrase paginator = new Phrase();
     //strona główna - wyszukiwarka
     public String showHomePage(Model model){
         Phrase phrase = new Phrase();
@@ -39,8 +40,20 @@ public class Service {
 
     //strona z wyszukanymi pozycjami
     public String search(@ModelAttribute Phrase phrase, Model model) throws IOException {
-        String url ="https://panoramafirm.pl/szukaj?k="+phrase.getPhrase();
-        Document document = Jsoup.connect(url).get();
+        //przy pierwszym wywołaniu ustaw poprawnie paginator
+        if(phrase.getPhrase() != null && !phrase.getPhrase().isEmpty()){
+            paginator.setPage(1);
+            paginator.setPhrase(phrase.getPhrase());
+        }
+        Document document = null;
+        String url ="https://panoramafirm.pl/"+paginator.getPhrase()+"/firmy,"+paginator.getPage()+".html";
+        try{
+            document = Jsoup.connect(url).get();
+            System.out.println(paginator.getPage());
+            allResults.clear();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         Elements results = document.select("li.card.company-item");
         int counter = 0;
         for (Element res : results) {
@@ -99,5 +112,11 @@ public class Service {
         return ResponseEntity.ok()
                              .headers(headers)
                              .body(fileSystemResource);
+    }
+
+    //paginator
+    public String getNext(@ModelAttribute Phrase phrase, Model model) throws IOException {
+        paginator.setPage(paginator.getPage()+1);
+        return search(phrase,model);
     }
 }

@@ -38,4 +38,9 @@ public class Endpoint {
         return service.generateFile(result,model);
     }
 
+    //endpoint dla paginatora
+    @RequestMapping(value = "/search/next", method = RequestMethod.GET)
+    public String generateFile(@ModelAttribute Phrase phrase, Model model) throws IOException {
+        return service.getNext(phrase,model);
+    }
 }

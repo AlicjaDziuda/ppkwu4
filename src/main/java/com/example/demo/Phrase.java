@@ -12,7 +12,7 @@ public class Phrase {
     public void setPhrase(String phrase) {
         this.phrase = phrase;
     }
-    
+
     public int getPage(){
         return page;
     }
