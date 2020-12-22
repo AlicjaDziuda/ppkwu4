@@ -32,4 +32,10 @@ public class Endpoint {
         return service.search(phrase, model);
     }
 
+    //endpoint do generowania pliku
+    @RequestMapping(value = "/vcard/{result}", method = RequestMethod.GET)
+    public String generateFile(@PathVariable String result, Model model) throws IOException {
+        return service.generateFile(result,model);
+    }
+
 }
