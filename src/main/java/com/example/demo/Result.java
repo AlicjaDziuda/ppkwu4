@@ -1,6 +1,7 @@
 package com.example.demo;
 
 public class Result {
+    private String id;
     private String name;
     private String address;
     private String email;
@@ -63,5 +64,13 @@ public class Result {
 
     public void setLon(String lon) {
         this.lon = lon;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
