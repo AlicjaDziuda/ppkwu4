@@ -94,7 +94,7 @@ public class Service {
         Ezvcard.write(vcard).version(VCardVersion.V4_0).go(vcardFile);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=vcard.vcf");
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=vcard"+result+".vcf");
         Resource fileSystemResource = new FileSystemResource("vcard"+result+".vcf");
         return ResponseEntity.ok()
                              .headers(headers)
